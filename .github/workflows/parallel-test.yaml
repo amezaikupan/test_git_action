@@ -1,0 +1,32 @@
+name: Parallel Test.py Runs
+
+on:
+  push:
+    branches:
+      - khoi
+
+jobs:
+  run-parallel:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - a: 0
+            b: 10
+          - a: 10
+            b: 20
+          - a: 20
+            b: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Run test.py with matrix inputs
+        run: |
+          python test.py ${{ matrix.a }} ${{ matrix.b }} output_${{ matrix.a }}_${{ matrix.b }}.txt
