@@ -29,4 +29,4 @@ jobs:
 
       - name: Run test.py with matrix inputs
         run: |
-          python test.py ${{ matrix.a }} ${{ matrix.b }} output_${{ matrix.a }}_${{ matrix.b }}.txt
+          python test_1.py ${{ matrix.a }} ${{ matrix.b }} output_${{ matrix.a }}_${{ matrix.b }}.txt
